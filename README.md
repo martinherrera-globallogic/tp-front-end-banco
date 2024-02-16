@@ -30,5 +30,5 @@ El stack elegido fue según lo solicitado:
 
 ## Video recorriendo la aplicación
 
-A continuación dejo un enlace a google drive donde pueden ver un recorrido por la aplicación.
+A continuación dejo un enlace a google drive donde pueden ver un recorrido de usuario por la aplicación tanto en mobile como en desktop.
 https://drive.google.com/drive/folders/1xtFBrF_zNgmmTXmw8Z2-juSCZ6dJ_6T7?usp=sharing
