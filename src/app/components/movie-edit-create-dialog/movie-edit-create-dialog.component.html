@@ -1,8 +1,8 @@
 <h2 mat-dialog-title color="primary">
-  {{ actionType | capitalizePipe }} movie
+  {{ actionType | capitalizePipe }} series
 </h2>
 <mat-dialog-content>
-  <p>Please, complete all field in order to {{ actionType }} the movie</p>
+  <p>Please, complete all field in order to {{ actionType }} the series</p>
   <form
     [formGroup]="editOrCreateMovieForm"
     (ngSubmit)="confirmActionDialog(editOrCreateMovieForm.value)"

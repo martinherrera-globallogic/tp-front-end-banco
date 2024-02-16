@@ -23,7 +23,7 @@ export class ConfirmActionDialogComponent {
   actionType: Action;
   movie: Movie | undefined | null;
   isDelete: boolean = false;
-  title: string = 'Are you sure you want to reset all movies?';
+  title: string = 'Are you sure you want to reset all series?';
 
   constructor(
     @Inject(MAT_DIALOG_DATA) movieData: EditCreateDialogData,
@@ -34,7 +34,7 @@ export class ConfirmActionDialogComponent {
     this.movie = movieData.movie;
     if (this.actionType === Action.DELETE) {
       this.isDelete = true;
-      this.title = `Are you sure you want to delete the movie "${movieData.movie?.originalTitleText.text}"? `;
+      this.title = `Are you sure you want to delete the series "${movieData.movie?.originalTitleText.text}"? `;
     }
   }
 

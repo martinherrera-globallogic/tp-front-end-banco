@@ -48,14 +48,14 @@ export class MoviesService {
         .subscribe({
           error: (error) => {
             this.snackBarService.openSnackbar(
-              'Something went wrong while fetching movies, please try again',
+              'Something went wrong while fetching series, please try again',
               'OK'
             );
-            console.error('Error fetching movies', error);
+            console.error('Error fetching series', error);
           },
           complete: () => {
             this.snackBarService.openSnackbar(
-              'Movies fetched successfully!',
+              'Series fetched successfully!',
               'OK'
             );
           },
@@ -76,7 +76,7 @@ export class MoviesService {
       );
 
       this.moviesSubject.next(updatedMovies);
-      this.snackBarService.openSnackbar('Movie successfully deleted!', 'OK');
+      this.snackBarService.openSnackbar('Series successfully deleted!', 'OK');
     }
   }
 
@@ -89,7 +89,7 @@ export class MoviesService {
       this.moviesSubject.next(JSON.parse(initialData));
 
       this.snackBarService.openSnackbar(
-        'Movies successfully restores to initial data!',
+        'Series successfully restored to initial data!',
         'OK'
       );
     } else {
@@ -112,7 +112,7 @@ export class MoviesService {
       );
 
       this.moviesSubject.next(updatedMovies);
-      this.snackBarService.openSnackbar('Movie successfully updated!', 'OK');
+      this.snackBarService.openSnackbar('Series successfully updated!', 'OK');
     }
   }
 
@@ -131,7 +131,7 @@ export class MoviesService {
       );
 
       this.moviesSubject.next(updatedMovies);
-      this.snackBarService.openSnackbar('Movie successfully created!', 'OK');
+      this.snackBarService.openSnackbar('Series successfully created!', 'OK');
     }
   }
 }
