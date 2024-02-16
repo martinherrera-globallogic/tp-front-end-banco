@@ -1,27 +1,35 @@
-# TpFrontEndAngularBanco
+# Trabajo Practico Front-End
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.2.0.
+## Desarrollador: Martín Herrera
 
-## Development server
+## Stack
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+El stack elegido fue según lo solicitado:
 
-## Code scaffolding
+- Angular v17.2.0 (Latest versions)
+- Angular Material v17.2.0 (Latest versions)
+- API: MoviesDatabase https://rapidapi.com/SAdrian/api/moviesdatabase/
+- Endpoint: https://moviesdatabase.p.rapidapi.com/titles?list=most_pop_series
+- Persistencia de la data en localStorage: una vez que se completa el fetch, se guarda una copia de la información en el localStorage para no tener que volver a hacer el llamado si el usuario desea resetear la información.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Features:
 
-## Build
+- CRUD: se realizan las cuatro operaciones: lectura, creación, actualización y eliminación de datos.
+- Modal de confirmación ante acciones: el usuario debe confirmar su acción ante cada acción que desee realizar.
+- Componentes utilizados de Angular Material: Dialog, Snackbar, Table, Buttons, FormField, Input, Icon.
+- Aplicación responsiva.
+- ReactiveForms para la validación de los inputs al crear o editar información.
+- Snackbars para avisarle al usuario cuando se termina de ejecutar una acción.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Resumen del recorrido del usuario:
 
-## Running unit tests
+- Ingresa a la app donde podrá ver una tabla con la información de las series de televisión que devuelve el endpoint. Dicha tabla posee acciones tanto de edición como de eliminación por cada fila. Si se está en tamaño mobile, la tabla es scrolleable horizontalmente.
+- Posibilidad de crear, editar o eliminar una serie o de resetear la data a su estado original.
+- Visualización de snackbars ante cada acción.
+- Visualización de modales tanto para crear o editar como para eliminar o resetear.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Imagenes de la aplicación
 
-## Running end-to-end tests
+### Mobile:
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+### Desktop:
