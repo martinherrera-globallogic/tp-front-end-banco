@@ -1,3 +1,6 @@
+@if(this.isLoading){
+<app-loader></app-loader>
+} @else {
 <div class="movie-list_actions divider-top divider-bottom">
   <button
     mat-raised-button
@@ -90,3 +93,4 @@
     <tr mat-row *matRowDef="let row; columns: tableDisplayedColumns"></tr>
   </table>
 </div>
+}

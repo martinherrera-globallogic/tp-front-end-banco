@@ -9,6 +9,7 @@ import { MovieEditCreateDialogComponent } from '../movie-edit-create-dialog/movi
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { ConfirmActionDialogComponent } from '../confirm-action-dialog/confirm-action-dialog.component';
+import { LoaderComponent } from '../shared/loader/loader.component';
 
 @Component({
   selector: 'app-movie-list',
@@ -20,11 +21,13 @@ import { ConfirmActionDialogComponent } from '../confirm-action-dialog/confirm-a
     DateFormatPipePipe,
     MatButtonModule,
     MatIconModule,
+    LoaderComponent,
   ],
   templateUrl: './movie-list.component.html',
   styleUrl: './movie-list.component.scss',
 })
 export class MovieListComponent implements OnChanges {
+  isLoading: boolean = true;
   @Input() movieList: Movie[];
   tableDisplayedColumns: string[] = [
     'id',
@@ -49,6 +52,7 @@ export class MovieListComponent implements OnChanges {
       movieListChange.currentValue.length > 0
     ) {
       this.tableSource.data = movieListChange.currentValue;
+      this.isLoading = false;
     }
   }
 

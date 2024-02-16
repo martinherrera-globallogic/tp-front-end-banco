@@ -16,10 +16,12 @@ El stack elegido fue según lo solicitado:
 
 - CRUD: se realizan las cuatro operaciones: lectura, creación, actualización y eliminación de datos.
 - Modal de confirmación ante acciones: el usuario debe confirmar su acción ante cada acción que desee realizar.
-- Componentes utilizados de Angular Material: Dialog, Snackbar, Table, Buttons, FormField, Input, Icon.
+- Componentes utilizados de Angular Material: Dialog, Snackbar, Table, Buttons, FormField, Input, Icon y ProgressSpinner
 - Aplicación responsiva.
 - ReactiveForms para la validación de los inputs al crear o editar información.
 - Snackbars para avisarle al usuario cuando se termina de ejecutar una acción.
+- Interceptors para el agregado de headers requeridos por la API.
+- RxJs
 
 ## Resumen del recorrido del usuario:
 
