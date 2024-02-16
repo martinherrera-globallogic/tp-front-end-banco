@@ -1,0 +1,17 @@
+.container {
+  margin: 4rem;
+}
+
+.header {
+  background-color: var(--primary-color);
+  color: var(--primary-text-color);
+  padding: 2rem;
+  border-radius: var(--border-radius);
+}
+.header_title {
+  text-align: center;
+}
+.header_subtitle {
+  text-wrap: balance;
+  text-align: center;
+}

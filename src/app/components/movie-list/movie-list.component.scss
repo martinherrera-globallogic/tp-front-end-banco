@@ -1,0 +1,20 @@
+.movie-list_actions {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.movie-list-table-container {
+  overflow-x: auto;
+}
+
+.movie-list-table-container_action-delete {
+  margin-left: var(--margin-divider);
+}
+
+@media only screen and (max-width: 1080px) {
+  .movie-list-table-container_action-delete {
+    margin-left: unset;
+    margin-top: var(--margin-divider);
+  }
+}

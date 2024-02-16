@@ -1,49 +1,88 @@
-<table mat-table [dataSource]="tableSource" class="mat-elevation-z8">
-  <ng-container matColumnDef="id">
-    <th mat-header-cell *matHeaderCellDef>Id</th>
-    <td mat-cell *matCellDef="let element">{{ element.id }}</td>
-  </ng-container>
+<div class="movie-list_actions divider-top divider-bottom">
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="openCreateOrEditDialog('create')"
+  >
+    Crete new movie
+  </button>
 
-  <ng-container matColumnDef="title">
-    <th mat-header-cell *matHeaderCellDef>Title</th>
-    <td mat-cell *matCellDef="let element">
-      {{ element.originalTitleText.text }}
-    </td>
-  </ng-container>
+  <button mat-raised-button color="accent" (click)="resetMovies()">
+    Reset movies
+  </button>
+</div>
+<div class="movie-list-table-container">
+  <table
+    mat-table
+    color="primary"
+    [dataSource]="tableSource"
+    class="mat-elevation-z8"
+  >
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef>Id</th>
+      <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+    </ng-container>
 
-  <ng-container matColumnDef="position">
-    <th mat-header-cell *matHeaderCellDef>Rank Position</th>
-    <td mat-cell *matCellDef="let element">{{ element.position }}</td>
-  </ng-container>
+    <ng-container matColumnDef="title">
+      <th mat-header-cell *matHeaderCellDef>Title</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.originalTitleText.text }}
+      </td>
+    </ng-container>
 
-  <ng-container matColumnDef="image">
-    <th mat-header-cell *matHeaderCellDef>Image</th>
-    <td mat-cell *matCellDef="let element">
-      <img
-        src="{{ element.primaryImage.url }}"
-        alt="movie_image"
-        style="width: 100px; height: 100px"
-      />
-    </td>
-  </ng-container>
+    <ng-container matColumnDef="position">
+      <th mat-header-cell *matHeaderCellDef>Rank Position</th>
+      <td mat-cell *matCellDef="let element">{{ element.position }}</td>
+    </ng-container>
 
-  <ng-container matColumnDef="release date">
-    <th mat-header-cell *matHeaderCellDef>Release Date</th>
-    <td mat-cell *matCellDef="let element">
-      {{ element.releaseDate | dateFormatPipe }}
-    </td>
-  </ng-container>
+    <ng-container matColumnDef="image">
+      <th mat-header-cell *matHeaderCellDef>Image</th>
+      <td mat-cell *matCellDef="let element">
+        <img
+          src="{{ element.primaryImage.url }}"
+          alt="movie_image"
+          style="width: 100px; height: 100px"
+        />
+      </td>
+    </ng-container>
 
-  <ng-container matColumnDef="actions">
-    <th mat-header-cell *matHeaderCellDef>Actions</th>
-    <td mat-cell *matCellDef="let element">
-      <button (click)="openCreateOrEditDialog('edit', element)">Edit</button>
-      <button (click)="openDeleteDialog(element)">Del</button>
-    </td>
-  </ng-container>
+    <ng-container matColumnDef="release date">
+      <th mat-header-cell *matHeaderCellDef>Release Date</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.releaseDate | dateFormatPipe }}
+      </td>
+    </ng-container>
 
-  <tr mat-header-row *matHeaderRowDef="tableDisplayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: tableDisplayedColumns"></tr>
-</table>
-<button (click)="openCreateOrEditDialog('create')">Crete new movie</button>
-<button (click)="resetMovies()">Reset movies</button>
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>Actions</th>
+      <td mat-cell *matCellDef="let element">
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="openCreateOrEditDialog('edit', element)"
+        >
+          <mat-icon
+            aria-hidden="false"
+            aria-label="edit icon"
+            fontIcon="edit"
+          ></mat-icon>
+        </button>
+        <button
+          mat-raised-button
+          color="warn"
+          (click)="openDeleteDialog(element)"
+          class="movie-list-table-container_action-delete"
+        >
+          <mat-icon
+            aria-hidden="false"
+            aria-label="delete"
+            fontIcon="delete"
+          ></mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="tableDisplayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: tableDisplayedColumns"></tr>
+  </table>
+</div>

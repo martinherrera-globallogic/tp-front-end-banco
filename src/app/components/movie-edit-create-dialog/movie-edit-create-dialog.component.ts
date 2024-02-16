@@ -21,6 +21,7 @@ import {
   FormData,
 } from '../../../types/edit-create-dialog-data';
 import { Movie } from '../../../types/movie';
+import { CapitalizePipePipe } from '../../pipes/capitalize-pipe.pipe';
 import { MoviesService } from '../../services/movies/movies.service';
 import { convertDateStringToObject } from '../../utils/format-helper';
 
@@ -34,9 +35,10 @@ import { convertDateStringToObject } from '../../utils/format-helper';
     ReactiveFormsModule,
     MatButtonModule,
     CommonModule,
+    CapitalizePipePipe,
   ],
   templateUrl: './movie-edit-create-dialog.component.html',
-  styleUrl: './movie-edit-create-dialog.component.css',
+  styleUrl: './movie-edit-create-dialog.component.scss',
 })
 export class MovieEditCreateDialogComponent implements OnInit {
   actionType: Action;
@@ -181,6 +183,5 @@ export class MovieEditCreateDialogComponent implements OnInit {
 
   cancelActionDialog() {
     this.closeDialog();
-    console.log('cancel');
   }
 }

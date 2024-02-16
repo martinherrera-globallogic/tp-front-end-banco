@@ -1,0 +1,34 @@
+@import "../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css";
+
+html,
+body {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: #3e2723;
+}
+:root {
+  --primary-color: #673ab7;
+  --primary-text-color: #ffffff;
+
+  --border-radius: 4px;
+  --margin-divider: 1rem;
+}
+
+.divider-top {
+  margin-top: var(--margin-divider);
+}
+
+.divider-right {
+  margin-right: var(--margin-divider);
+}
+
+.divider-left {
+  margin-left: var(--margin-divider);
+}
+
+.divider-bottom {
+  margin-bottom: var(--margin-divider);
+}
+
+.mat-mdc-snack-bar-container .mdc-snackbar__surface {
+  background-color: var(--primary-color);
+}

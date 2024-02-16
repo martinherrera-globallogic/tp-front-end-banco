@@ -7,14 +7,22 @@ import { DateFormatPipePipe } from '../../pipes/date-format-pipe.pipe';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MovieEditCreateDialogComponent } from '../movie-edit-create-dialog/movie-edit-create-dialog.component';
 import { MoviesService } from '../../services/movies/movies.service';
-import { Action } from '../../../types/edit-create-dialog-data';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-movie-list',
   standalone: true,
-  imports: [MatTableModule, MatSortModule, MatPaginator, DateFormatPipePipe],
+  imports: [
+    MatTableModule,
+    MatSortModule,
+    MatPaginator,
+    DateFormatPipePipe,
+    MatButtonModule,
+    MatIconModule,
+  ],
   templateUrl: './movie-list.component.html',
-  styleUrl: './movie-list.component.css',
+  styleUrl: './movie-list.component.scss',
 })
 export class MovieListComponent implements OnChanges {
   @Input() movieList: Movie[];
@@ -38,7 +46,11 @@ export class MovieListComponent implements OnChanges {
 
   ngOnChanges(simpleChange: SimpleChanges) {
     const movieListChange = simpleChange['movieList'];
-    if (movieListChange && movieListChange.currentValue.length > 0) {
+    if (
+      movieListChange &&
+      movieListChange.currentValue &&
+      movieListChange.currentValue.length > 0
+    ) {
       this.tableSource.data = movieListChange.currentValue;
     }
   }

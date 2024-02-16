@@ -1,9 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment.development';
-import { BehaviorSubject, Observable, of, tap } from 'rxjs';
+import { BehaviorSubject, tap } from 'rxjs';
 import { Movie, MoviesAPIResult } from '../../../types/movie';
-import { idIsNotRepited } from '../../utils/format-helper';
+import {
+  MatSnackBar,
+  MatSnackBarHorizontalPosition,
+  MatSnackBarVerticalPosition,
+} from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +19,10 @@ export class MoviesService {
   );
   movies$ = this.moviesSubject.asObservable();
 
-  constructor(private httpClient: HttpClient) {}
+  horizontalPosition: MatSnackBarHorizontalPosition = 'right';
+  verticalPosition: MatSnackBarVerticalPosition = 'top';
+
+  constructor(private httpClient: HttpClient, private snackBar: MatSnackBar) {}
 
   getMostPopularSeries(): void {
     const localStorageMovie = localStorage.getItem(environment.localStorageKey);
@@ -36,7 +43,14 @@ export class MoviesService {
             this.moviesSubject.next(data);
           })
         )
-        .subscribe();
+        .subscribe({
+          error: (error) => {
+            console.error('Error fetching movies', error);
+          },
+          complete: () => {
+            this.openSnackbar('Movies fetched successfully!', 'OK');
+          },
+        });
     }
   }
 
@@ -53,6 +67,7 @@ export class MoviesService {
       );
 
       this.moviesSubject.next(updatedMovies);
+      this.openSnackbar('Movie successfully deleted!', 'OK');
     }
   }
 
@@ -76,6 +91,7 @@ export class MoviesService {
       );
 
       this.moviesSubject.next(updatedMovies);
+      this.openSnackbar('Movie successfully updated!', 'OK');
     }
   }
 
@@ -94,6 +110,14 @@ export class MoviesService {
       );
 
       this.moviesSubject.next(updatedMovies);
+      this.openSnackbar('Movie successfully created!', 'OK');
     }
+  }
+
+  openSnackbar(messagge: string, buttonMessage: string) {
+    this.snackBar.open(messagge, buttonMessage, {
+      horizontalPosition: this.horizontalPosition,
+      verticalPosition: this.verticalPosition,
+    });
   }
 }
