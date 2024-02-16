@@ -28,8 +28,7 @@ El stack elegido fue según lo solicitado:
 - Visualización de snackbars ante cada acción.
 - Visualización de modales tanto para crear o editar como para eliminar o resetear.
 
-## Imagenes de la aplicación
+## Video recorriendo la aplicación
 
-### Mobile:
-
-### Desktop:
+A continuación dejo un enlace a google drive donde pueden ver un recorrido por la aplicación.
+https://drive.google.com/drive/folders/1xtFBrF_zNgmmTXmw8Z2-juSCZ6dJ_6T7?usp=sharing
