@@ -3,11 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment.development';
 import { BehaviorSubject, tap } from 'rxjs';
 import { Movie, MoviesAPIResult } from '../../../types/movie';
-import {
-  MatSnackBar,
-  MatSnackBarHorizontalPosition,
-  MatSnackBarVerticalPosition,
-} from '@angular/material/snack-bar';
+import { SnackbarService } from '../snackbar/snackbar.service';
 
 @Injectable({
   providedIn: 'root',
@@ -18,11 +14,12 @@ export class MoviesService {
     <MoviesAPIResult>{}
   );
   movies$ = this.moviesSubject.asObservable();
+  private initialMovieData!: MoviesAPIResult;
 
-  horizontalPosition: MatSnackBarHorizontalPosition = 'right';
-  verticalPosition: MatSnackBarVerticalPosition = 'top';
-
-  constructor(private httpClient: HttpClient, private snackBar: MatSnackBar) {}
+  constructor(
+    private httpClient: HttpClient,
+    private snackBarService: SnackbarService
+  ) {}
 
   getMostPopularSeries(): void {
     const localStorageMovie = localStorage.getItem(environment.localStorageKey);
@@ -40,15 +37,27 @@ export class MoviesService {
               environment.localStorageKey,
               JSON.stringify(data)
             );
+            localStorage.setItem(
+              environment.localStorageKeyInitialData,
+              JSON.stringify(data)
+            );
+            this.initialMovieData = data;
             this.moviesSubject.next(data);
           })
         )
         .subscribe({
           error: (error) => {
+            this.snackBarService.openSnackbar(
+              'Something went wrong while fetching movies, please try again',
+              'OK'
+            );
             console.error('Error fetching movies', error);
           },
           complete: () => {
-            this.openSnackbar('Movies fetched successfully!', 'OK');
+            this.snackBarService.openSnackbar(
+              'Movies fetched successfully!',
+              'OK'
+            );
           },
         });
     }
@@ -67,13 +76,25 @@ export class MoviesService {
       );
 
       this.moviesSubject.next(updatedMovies);
-      this.openSnackbar('Movie successfully deleted!', 'OK');
+      this.snackBarService.openSnackbar('Movie successfully deleted!', 'OK');
     }
   }
 
   resetMovies(): void {
-    localStorage.removeItem(environment.localStorageKey);
-    this.getMostPopularSeries();
+    const initialData = localStorage.getItem(
+      environment.localStorageKeyInitialData
+    );
+    if (initialData) {
+      localStorage.setItem(environment.localStorageKey, initialData);
+      this.moviesSubject.next(JSON.parse(initialData));
+
+      this.snackBarService.openSnackbar(
+        'Movies successfully restores to initial data!',
+        'OK'
+      );
+    } else {
+      this.getMostPopularSeries();
+    }
   }
 
   updateMovieById(updatedMovie: Movie) {
@@ -91,7 +112,7 @@ export class MoviesService {
       );
 
       this.moviesSubject.next(updatedMovies);
-      this.openSnackbar('Movie successfully updated!', 'OK');
+      this.snackBarService.openSnackbar('Movie successfully updated!', 'OK');
     }
   }
 
@@ -110,14 +131,7 @@ export class MoviesService {
       );
 
       this.moviesSubject.next(updatedMovies);
-      this.openSnackbar('Movie successfully created!', 'OK');
+      this.snackBarService.openSnackbar('Movie successfully created!', 'OK');
     }
-  }
-
-  openSnackbar(messagge: string, buttonMessage: string) {
-    this.snackBar.open(messagge, buttonMessage, {
-      horizontalPosition: this.horizontalPosition,
-      verticalPosition: this.verticalPosition,
-    });
   }
 }

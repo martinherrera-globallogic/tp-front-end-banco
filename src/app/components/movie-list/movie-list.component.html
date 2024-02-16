@@ -7,7 +7,11 @@
     Crete new movie
   </button>
 
-  <button mat-raised-button color="accent" (click)="resetMovies()">
+  <button
+    mat-raised-button
+    color="accent"
+    (click)="openConfirmActionDialog('reset')"
+  >
     Reset movies
   </button>
 </div>
@@ -70,7 +74,7 @@
         <button
           mat-raised-button
           color="warn"
-          (click)="openDeleteDialog(element)"
+          (click)="openConfirmActionDialog('delete', element)"
           class="movie-list-table-container_action-delete"
         >
           <mat-icon

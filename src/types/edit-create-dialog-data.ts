@@ -8,6 +8,8 @@ export interface EditCreateDialogData {
 export enum Action {
   EDIT = 'edit',
   CREATE = 'create',
+  DELETE = 'delete',
+  RESET = 'reset',
 }
 
 export interface FormData {

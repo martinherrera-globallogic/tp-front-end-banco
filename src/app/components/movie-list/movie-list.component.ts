@@ -6,9 +6,9 @@ import { MatPaginator } from '@angular/material/paginator';
 import { DateFormatPipePipe } from '../../pipes/date-format-pipe.pipe';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MovieEditCreateDialogComponent } from '../movie-edit-create-dialog/movie-edit-create-dialog.component';
-import { MoviesService } from '../../services/movies/movies.service';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { ConfirmActionDialogComponent } from '../confirm-action-dialog/confirm-action-dialog.component';
 
 @Component({
   selector: 'app-movie-list',
@@ -36,10 +36,7 @@ export class MovieListComponent implements OnChanges {
   ];
   tableSource: MatTableDataSource<Movie, MatPaginator>;
 
-  constructor(
-    private matDialog: MatDialog,
-    private movieService: MoviesService
-  ) {
+  constructor(private matDialog: MatDialog) {
     this.movieList = <Movie[]>[];
     this.tableSource = new MatTableDataSource();
   }
@@ -68,11 +65,16 @@ export class MovieListComponent implements OnChanges {
     this.matDialog.open(MovieEditCreateDialogComponent, dialogConfig);
   }
 
-  openDeleteDialog(movie: Movie) {
-    this.movieService.deleteMovie(movie.id);
-  }
+  openConfirmActionDialog(action: string, movie?: Movie) {
+    const dialogConfig = new MatDialogConfig();
 
-  resetMovies() {
-    this.movieService.resetMovies();
+    dialogConfig.autoFocus = true;
+    dialogConfig.disableClose = true;
+    dialogConfig.data = {
+      action: action,
+      movie: movie,
+    };
+
+    this.matDialog.open(ConfirmActionDialogComponent, dialogConfig);
   }
 }
